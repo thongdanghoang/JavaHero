@@ -6,8 +6,8 @@ import java.util.logging.Logger;
 
 public class DBConnection {
 
-    //Singleton Design Pattern
-    private static DBConnection uniqueInstance = new DBConnection();
+    //Singleton Design Pattern: Unique Instance
+    private static DBConnection INSTANCE = new DBConnection();
 
     private static final String DATABASE_NAME = "student_management";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
@@ -19,8 +19,9 @@ public class DBConnection {
     private DBConnection() {
     }
 
+//    Singleton Design Pattern: Eager initialization
     public static DBConnection getInstance() {
-        return uniqueInstance;
+        return INSTANCE;
     }
 
     public Connection open() throws DBConnectionException {
@@ -61,4 +62,28 @@ public class DBConnection {
 
     }
 
+    /* Singleton Design Pattern: Lazy initialization: multithreaded sync
+    public static DBConnection getInstance() {
+        if (INSTANCE == null) {
+            synchronized (DBConnection.class) {
+                DBConnection instance = INSTANCE;
+                if (instance == null) {
+                    synchronized (DBConnection.class) {
+                        INSTANCE = new DBConnection();
+                    }
+                }
+            }
+        }
+        return INSTANCE;
+    }*/
+ /* Singleton Design Pattern: Bill Pugh Singleton Implementation
+    //Inner Class to provide instance of class
+    private static class BillPughSingleton {
+
+        private static final DBConnection INSTANCE = new DBConnection();
+    }
+
+    public static DBConnection getInstance() {
+        return BillPughSingleton.INSTANCE;
+    }*/
 }
