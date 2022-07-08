@@ -1,6 +1,6 @@
 package ctrl.map;
 
-import ctrl.dto.ClassroomDTO;
+import ctrl.dto.ClazzDTO;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -11,20 +11,20 @@ import model.dbconnection.DBConnectionException;
 import model.entity.Clazz;
 import model.entity.Student;
 
-public class ClassroomMapping implements IMapping<Clazz, ClassroomDTO> {
+public class ClassroomMapping implements IMapping<Clazz, ClazzDTO> {
 
     private StudentDAO dao = new StudentDAO();
 
     @Override
-    public ClassroomDTO toDTO(Clazz entity) {
-        ClassroomDTO dto = new ClassroomDTO();
+    public ClazzDTO toDTO(Clazz entity) {
+        ClazzDTO dto = new ClazzDTO();
         dto.setIdClassroom(entity.getId());
         dto.setName(entity.getName());
         return dto;
     }
 
     @Override
-    public Clazz toEntity(ClassroomDTO dto) {
+    public Clazz toEntity(ClazzDTO dto) {
         Clazz entity = new Clazz();
         entity.setId(dto.getIdClassroom());
         entity.setName(dto.getName());

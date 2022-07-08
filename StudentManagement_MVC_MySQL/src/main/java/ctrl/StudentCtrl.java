@@ -4,8 +4,6 @@ import ctrl.dto.StudentDTO;
 import ctrl.map.StudentMapping;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.dao.StudentDAO;
 import model.dao.exception.DeleteExceptions;
 import model.dao.exception.FindByIDExceptions;
@@ -30,17 +28,11 @@ public class StudentCtrl implements IController<StudentDTO, String> {
     }
 
     @Override
-    public Map<String, StudentDTO> getAll() {
+    public Map<String, StudentDTO> getAll() throws DBConnectionException, GetAllExceptions {
         Map<String, StudentDTO> list = new HashMap<>();
-        try {
-            dao.getAll().values().stream()
-                    .map(mapping::toDTO)
-                    .forEach(e -> list.put(e.getIdStudent(), e));
-        } catch (DBConnectionException ex) {
-            Logger.getLogger(StudentCtrl.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (GetAllExceptions ex) {
-            System.err.println(ex.getMessage());
-        }
+        dao.getAll().values().stream()
+                .map(mapping::toDTO)
+                .forEach(e -> list.put(e.getIdStudent(), e));
         return list;
     }
 

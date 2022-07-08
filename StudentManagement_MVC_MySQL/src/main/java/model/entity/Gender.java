@@ -9,15 +9,15 @@ import java.util.Map;
  */
 public enum Gender {
     MALE(1), FEMALE(0), UNKNOWN(-1);
-    private int code;
+    private final int CODE;
     private static Map<Integer, Gender> genderMap;
 
     Gender(int code) {
-        this.code = code;
+        this.CODE = code;
     }
 
     public int getCode() {
-        return code;
+        return CODE;
     }
 
     public static Gender getGender(int code) {
