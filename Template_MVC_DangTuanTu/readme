@@ -1,0 +1,7 @@
+
+
+Workflow - DangTuanTu
+1. model.entity
+2. model.dbconnection (include exceptions)
+3. model.dao: IDAO, exceptions
+4. ctrl: IController, DTO, map
